@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {Category, TransactionMutation} from "../../type.ts";
 import {AppDispatch, RootState} from "../../Redux/store.ts";
-import {fetchCategories, fetchCategory} from "../../Redux/Slice/CategoriesSlice.ts";
+import {fetchCategories} from "../../Redux/Slice/CategoriesSlice.ts";
 import {fetchPutT, fetchTransaction, fetchTransactions} from "../../Redux/Slice/TransactionsSlice.ts";
 
 const emptyState:TransactionMutation = {

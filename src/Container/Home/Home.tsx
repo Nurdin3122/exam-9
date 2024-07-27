@@ -33,22 +33,24 @@ const Home = () => {
                 <h2>Total: {totalAmount} KGS</h2>
             </div>
 
-            {loading ? <Spinner/> : (
-                transactions.map(transaction => (
-                    <div key={transaction.id} className="block-transactions border mt-3">
-                        <div className="block-body-transactions p-4 d-flex align-items-center">
-                            <span>{dayjs(transaction.transaction.createdAt).format('DD.MM.YYYY HH:mm:ss')}</span>
-                            <span className="ms-auto">{transaction.transaction.type === 'income' ? '+' : '-'}{transaction.transaction.amount} KGS</span>
-                            <div className="block-btn-transactions ms-4">
-                                <button onClick={() => Delete(transaction.id)} className="btn btn-danger me-3">
-                                    Delete
-                                </button>
-                                <Link to={`/edit-add/${transaction.id}`} className="btn btn-primary">Edit</Link>
+            <div className="d-flex flex-column-reverse">
+                {loading ? <Spinner/> : (
+                    transactions.map(transaction => (
+                        <div key={transaction.id} className="block-transactions border mt-3">
+                            <div className="block-body-transactions p-4 d-flex align-items-center">
+                                <span>{dayjs(transaction.transaction.createdAt).format('DD.MM.YYYY HH:mm:ss')}</span>
+                                <span className="ms-auto">{transaction.transaction.type === 'income' ? '+' : '-'}{transaction.transaction.amount} KGS</span>
+                                <div className="block-btn-transactions ms-4">
+                                    <button onClick={() => Delete(transaction.id)} className="btn btn-danger me-3">
+                                        Delete
+                                    </button>
+                                    <Link to={`/edit-add/${transaction.id}`} className="btn btn-primary">Edit</Link>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))
-            )}
+                    ))
+                )}
+            </div>
         </>
     );
 };
