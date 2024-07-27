@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../Redux/store.ts";
 import {fetchCategories, fetchDelete} from "../../Redux/Slice/CategoriesSlice.ts";
 import Spinner from "../Spinner/Spinner.tsx";
-import {c} from "vite/dist/node/types.d-aGj9QkWt";
 
 const Categories = () => {
     const dispatch:AppDispatch = useDispatch();
@@ -13,13 +12,13 @@ const Categories = () => {
 
     useEffect(() => {
         dispatch(fetchCategories());
-    }, [fetchCategories]);
+    }, [dispatch]);
 
     const Delete = (id:string) => {
-        console.log(id)
         dispatch(fetchDelete(id));
         dispatch((fetchCategories()));
     }
+
     return (
         <>
           <div className="d-flex mt-5">

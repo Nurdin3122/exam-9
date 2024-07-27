@@ -21,7 +21,6 @@ const AddCategory = () => {
 
     const onFormSubmit = async (event:React.FormEvent) => {
         event.preventDefault();
-        console.log(setNewCategories)
         await dispatch(fetchPost(newCategories));
         await dispatch(fetchCategories());
         navigate('/categories');
@@ -32,7 +31,7 @@ const AddCategory = () => {
             ...prev,
             [event.target.name]: event.target.value,
         }))
-    }
+    };
 
     return (
         <>
@@ -44,7 +43,7 @@ const AddCategory = () => {
                                className="form-control"
                                id="name" name="name"
                                required
-                            value={newCategories.name}
+                               value={newCategories.name}
                                onChange={changeForm}
                         />
                     </div>
@@ -64,7 +63,6 @@ const AddCategory = () => {
                     <button type="submit" className="btn btn-primary mt-3">Submit</button>
                 </form>
             )}
-
         </>
     );
 };

@@ -4,8 +4,8 @@ import {useNavigate} from "react-router-dom";
 import Spinner from "../Spinner/Spinner.tsx";
 import React, {useEffect, useState} from "react";
 import {Category, TransactionMutation} from "../../type.ts";
-import {fetchCategories, fetchPost} from "../../Redux/Slice/CategoriesSlice.ts";
-import {fetchTransactions} from "../../Redux/Slice/TransactionsSlice.ts";
+import {fetchCategories} from "../../Redux/Slice/CategoriesSlice.ts";
+import {fetchPostT, fetchTransactions} from "../../Redux/Slice/TransactionsSlice.ts";
 
 const emptyState:TransactionMutation = {
     type:'',
@@ -16,10 +16,9 @@ const emptyState:TransactionMutation = {
 
 interface TransactionFormProps {
     transaction?: TransactionMutation;
-    transactionId?: string;
 }
 
-const Add:React.FC<TransactionFormProps> = ({transaction,transactionId}) =>  {
+const Add:React.FC<TransactionFormProps> = ({transaction}) =>  {
     const dispatch:AppDispatch = useDispatch();
     const loading = useSelector(state => state.categories.loading);
     const categories = useSelector((state: RootState) => state.categories.categories);
@@ -51,8 +50,8 @@ const Add:React.FC<TransactionFormProps> = ({transaction,transactionId}) =>  {
 
     const onFormSubmit = async (event:React.FormEvent) => {
         event.preventDefault();
-        dispatch(fetchPost(transactionData))
-        dispatch(fetchTransactions());
+        await dispatch(fetchPostT(transactionData))
+        await dispatch(fetchTransactions());
         navigate("/")
     }
 
@@ -66,7 +65,7 @@ const Add:React.FC<TransactionFormProps> = ({transaction,transactionId}) =>  {
                             name="type"
                             required
                             value={transactionData.type}
-                        onChange={changeForm}
+                            onChange={changeForm}
                     >
 
                         <option>Choose type</option>

@@ -45,7 +45,7 @@ const EditCategory = () => {
             ...prev,
             [event.target.name]: event.target.value,
         }))
-    }
+    };
 
     return (
         <>
@@ -77,7 +77,6 @@ const EditCategory = () => {
                     <button type="submit" className="btn btn-primary mt-3">Submit</button>
                 </form>
             )}
-
         </>
     );
 };

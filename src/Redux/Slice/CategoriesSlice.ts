@@ -43,7 +43,7 @@ export const fetchCategory = createAsyncThunk<Category,string>(
 
 export const fetchPost = createAsyncThunk(
     "categories/fetchPost",
-    async (category:string) => {
+    async (category:Categories) => {
         const response = await axiosApi.post<ApiCategory | null>('/categories.json',{category});
         return response.data;
     }
