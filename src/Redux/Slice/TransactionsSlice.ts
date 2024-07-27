@@ -53,6 +53,14 @@ export const fetchPostT = createAsyncThunk<ApiTransaction | null, Transaction>(
     }
 );
 
+export const fetchPutT = createAsyncThunk(
+    "transactions/fetchPutT",
+    async ({id,transaction}) => {
+        const response = await axiosApi.put<ApiTransaction | null>(`/transactions/${id}.json`, {transaction});
+        return response.data;
+    }
+)
+
 
 export const fetchDeleteT = createAsyncThunk<string,string>(
     "transactions/fetchDelete",
@@ -60,7 +68,7 @@ export const fetchDeleteT = createAsyncThunk<string,string>(
         await axiosApi.delete(`/transactions/${id}.json`);
         return id;
     }
-)
+);
 
 const TransactionsSlice = createSlice<Transactions>({
     name:"transactions",
@@ -118,6 +126,20 @@ const TransactionsSlice = createSlice<Transactions>({
             state.transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
         });
         builder.addCase(fetchDeleteT.rejected,(state) => {
+            state.loading = false;
+            state.error = true;
+        });
+
+
+        builder.addCase(fetchPutT.pending,(state) => {
+            state.loading = true;
+            state.error = false;
+        });
+        builder.addCase(fetchPutT.fulfilled,(state,action:PayloadAction<Transaction>) => {
+            state.loading = false;
+            state.transaction = action.payload
+        });
+        builder.addCase(fetchPutT.rejected,(state) => {
             state.loading = false;
             state.error = true;
         });

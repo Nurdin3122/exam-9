@@ -19,7 +19,7 @@ function App() {
                 <Route path="/add" element={<Add/>}/>
                 <Route path="/add-category" element={<AddCategory/>}/>
                 <Route path="/edit-category/:id" element={<EditCategory/>}/>
-                <Route path="/edit-add" element={<EditAdd/>}/>
+                <Route path="/edit-add/:id" element={<EditAdd/>}/>
                 <Route path="*" element={<h3 className="text-center">Sorry, there is not such page</h3>}/>
             </Routes>
         </Loyaut>

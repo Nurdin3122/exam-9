@@ -43,7 +43,7 @@ const Home = () => {
                                 <button onClick={() => Delete(transaction.id)} className="btn btn-danger me-3">
                                     Delete
                                 </button>
-                                <Link to="/edit-add" className="btn btn-primary">Edit</Link>
+                                <Link to={`/edit-add/${transaction.id}`} className="btn btn-primary">Edit</Link>
                             </div>
                         </div>
                     </div>
