@@ -10,8 +10,6 @@ import EditCategory from "./Components/Categories/Add-Category/EditCategory.tsx"
 import EditAdd from "./Components/Add/EditAdd.tsx";
 
 function App() {
-
-
   return (
     <>
         <Loyaut>
